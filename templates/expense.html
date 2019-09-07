@@ -1,0 +1,83 @@
+{% extends 'base/master.html' %}
+{% load staticfiles %}
+{% block title %} Expense {% endblock %}
+{% block 'content' %}
+<div class="container">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Add expense
+            </div>
+            <div class="panel-body">
+                <form method="post" action="#">
+                    {{form}}
+                    {% csrf_token %}
+                    <br/>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Current Month Expense{{month}},{{year}}</div>
+            <div class="panel-body">
+                <table class="table">
+                    <th>title</th>
+                    <th>Cost</th>
+                    <th>date</th>
+                    <th>Category</th>
+                    <th>Action</th>
+
+                    {% for e in expenses %}
+                        <tr>
+                            <td>{{e.title}}</td>
+                            <td>{{e.rupees}}</td>
+                            <td>{{e.date}}</td>
+                            <td>{{e.category}}</td>
+                            <td><a href="{% url 'expenses_edit' e.id %}"> Edit</a> |<a href="#" onclick="delete_('{% url 'expenses_delete' e.id %}')">del</a></td>
+                        </tr>
+
+                    {% endfor %}
+                    <tr>
+                        <td>Total</td>
+                        <td>{{total.rupees__sum}}</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Previous Month Expenses{{month}},{{year}}</div>
+            <div class="panel-body">
+                <table class="table">
+                    <th>title</th>
+                    <th>Cost</th>
+                    <th>date</th>
+                    <th>Category</th>
+                    <th>Action</th>
+
+                    {% for e in prevexpense %}
+                        <tr>
+                            <td>{{e.title}}</td>
+                            <td>{{e.rupees}}</td>
+                            <td>{{e.date}}</td>
+                            <td>{{e.category}}</td>
+                            <td><a href="{% url 'expenses_edit' e.id %}"> Edit</a> |<a href="#" onclick="delete_('{% url 'expenses_delete' e.id %}')">del</a> </td>
+                        </tr>
+
+                    {% endfor %}
+                    <tr>
+                        <td>Total</td>
+                        <td>{{prevtotal.rupees__sum}}</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

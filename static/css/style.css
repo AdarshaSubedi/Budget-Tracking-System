@@ -1,0 +1,22 @@
+body{
+    margin:0px;
+    padding:0px;
+}
+
+.navbar{
+    background-color:green !important;
+    border:00px;
+    border-radius:00px;
+}
+.navbar-nav>li>a{
+    color:#FFF !important;
+}
+
+.exp-img{
+    height:100px !important;
+    width:auto;
+}
+.exp-text>h4{
+    text-align:'center';
+    margin-left:5% !important;
+}

@@ -1,0 +1,35 @@
+{% extends 'base/master.html' %}
+{% load staticfiles %}
+{% block title %} Category {% endblock %}
+{% block 'content' %}
+<div class="container">
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Add Category
+            </div>
+            <div class="panel-body">
+                <form method="post" action="#">
+                    {{form}}
+                    {% csrf_token %}
+                    <br/>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <table class="table">
+            <th>Category</th>
+            <th>action</th>
+            {% for c in category %}
+                <tr>
+                    <td>{{c.title}}</td>
+                    <td>Action</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}
+
